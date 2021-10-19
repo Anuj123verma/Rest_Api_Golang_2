@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,7 +13,7 @@ import (
 func ConsumeApi(link string, locations entity.Geo) entity.Geo {
 	response, err := http.Get(link)
 	if err != nil {
-		fmt.Print(err.Error())
+		log.Fatal(err)
 		os.Exit(1)
 	}
 	responseData, err := ioutil.ReadAll(response.Body)

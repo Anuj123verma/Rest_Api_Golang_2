@@ -1,0 +1,92 @@
+basePath: /
+definitions:
+  entity.Error:
+    properties:
+      error:
+        type: string
+    type: object
+  entity.State:
+    properties:
+      active:
+        type: integer
+      confirmed:
+        type: integer
+      deaths:
+        type: integer
+      recovered:
+        type: integer
+      state:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: anujssooni360@gmail.con
+    name: Anuj Verma
+  description: This is a server that can give the covid information about the states
+    of India.
+  title: Swagger Covid Information About State API
+  version: "1.0"
+paths:
+  /state/{data}:
+    get:
+      description: Take Latitude, Longitude, ApiKey, Database name and Collection
+        name as input. You can specify the data type (json/string)in which you want
+        the response.
+      parameters:
+      - description: datatype
+        in: path
+        name: data
+        required: true
+        type: string
+      - description: latitude
+        in: query
+        name: lat
+        required: true
+        type: string
+      - description: longitude
+        in: query
+        name: long
+        required: true
+        type: string
+      - description: Database Name
+        in: query
+        name: db
+        required: true
+        type: string
+      - description: Collection
+        in: query
+        name: collection
+        required: true
+        type: string
+      - description: Authentication Key
+        in: query
+        name: ApiKey
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.State'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/entity.Error'
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Give the covid related infomation about the state
+      tags:
+      - States
+schemes:
+- http
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
