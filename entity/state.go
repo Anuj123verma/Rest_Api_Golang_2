@@ -1,5 +1,6 @@
 package entity
 
+//
 type State struct {
 	State     string `json:"state" bson:"state"`
 	Confirmed int    `json:"confirmed" bson:"confirmed cases"`
