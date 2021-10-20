@@ -63,12 +63,12 @@ func Getstate(c echo.Context) error {
 			return c.String(http.StatusOK, fmt.Sprintf("state : %s\nconfirmed cases : %d\nrecovered cases : %d\ntotal deaths : %d\ntotal active cases : %d\n", state.State, state.Confirmed, state.Recovered, state.Deaths, state.Active))
 		}
 		if dataType == "json" {
-			return c.JSON(http.StatusOK, map[string]string{
-				"state":              state.State,
-				"confirmed cases":    strconv.Itoa(state.Confirmed),
-				"recovered cases":    strconv.Itoa(state.Recovered),
-				"total deaths":       strconv.Itoa(state.Deaths),
-				"total active cases": strconv.Itoa(state.Active),
+			return c.JSON(http.StatusOK, &entity.State{
+				State:     state.State,
+				Confirmed: state.Confirmed,
+				Recovered: state.Recovered,
+				Deaths:    state.Deaths,
+				Active:    state.Active,
 			})
 		}
 		// dataType is not json and string
