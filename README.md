@@ -22,9 +22,10 @@
     * ApiKey -- Key Generated from the [here](https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-geocode-brief.html) platform
 * Port
     * 8000 -- you can change it is **main.go**
-* Type 
-    * **http://localhost:8000/state/string?lat=""&long=""&db=""&collection=""&ApiKey=""** or 
-    * **http://localhost:8000/state/json?lat=""&long=""&db=""&collection=""&ApiKey=""** 
+* Type this on your browser to get the output
+    * **http://localhost:8000/state/string?lat=""&long=""&db=""&collection=""&ApiKey=""**/ or 
+    * **http://localhost:8000/state/json?lat=""&long=""&db=""&collection=""&ApiKey=""**/ 
     * Fill the enpty strings by yourself to get the desired output.
-
+* For Swagger UI
+    * **http://localhost:8000/swagger/index.html**
 
