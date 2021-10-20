@@ -23,8 +23,8 @@
 * Port
     * 8000 -- you can change it is **main.go**
 * Type this on your browser to get the output
-    * **http://localhost:8000/state/string?lat=""&long=""&db=""&collection=""&ApiKey=""**/ or 
-    * **http://localhost:8000/state/json?lat=""&long=""&db=""&collection=""&ApiKey=""**/ 
+    * **http://localhost:8000/state/string?lat=""&long=""&db=""&collection=""&ApiKey=""** or 
+    * **http://localhost:8000/state/json?lat=""&long=""&db=""&collection=""&ApiKey=""**
     * Fill the enpty strings by yourself to get the desired output.
 * For Swagger UI
     * **http://localhost:8000/swagger/index.html**
