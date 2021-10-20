@@ -1,6 +1,6 @@
 package entity
 
-//
+// state entity that we want to show as final output
 type State struct {
 	State     string `json:"state" bson:"state"`
 	Confirmed int    `json:"confirmed" bson:"confirmed cases"`

@@ -1,4 +1,4 @@
-# State API
+# Covid State API
 
 ### An API that can fetch the **covid** related information about the state depending on the given **latitude** and **longitude**.
 

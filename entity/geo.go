@@ -1,5 +1,6 @@
 package entity
 
+// entity that made on the basis of consumed api data
 type Geo struct {
 	Items []struct {
 		Title           string `json:"title"`

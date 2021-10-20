@@ -31,6 +31,7 @@ import (
 // @Failure 500  {string} string "error"
 // @Router /state/{data} [get]
 func Getstate(c echo.Context) error {
+	// stroing the parameters and querparameters in variables
 	dataType := c.Param("dataType")
 	latitude := c.QueryParam("lat")
 	longitude := c.QueryParam("long")
@@ -38,17 +39,26 @@ func Getstate(c echo.Context) error {
 	collectionname := c.QueryParam("collection")
 	key := c.QueryParam("ApiKey")
 
+	// getting the link of the api from which fetching the covid information
 	link := Getlink(latitude, longitude, key)
+	// Geo struct type variable declared
 	var locations entity.Geo
+	// consuming the api to get the location for a particular latitude and longitude
 	var nlocations entity.Geo = ConsumeApi(link, locations)
+	// checking if the location lies in India
 	if nlocations.Items[0].Address.CountryName == "India" {
+		// state struct type variable declared
 		var state entity.State
+		// creating a filter on the basis of state name
 		filter := bson.D{primitive.E{Key: "state", Value: nlocations.Items[0].Address.State}}
+		// fetching the collection from mongodb
 		collection := mongodb.Getdb(dbname, collectionname)
+		// fetching the information from the collection based on filter
 		err := collection.FindOne(context.Background(), filter).Decode(&state)
 		if err != nil {
 			log.Fatal(err)
 		}
+		// dataType checked
 		if dataType == "string" {
 			return c.String(http.StatusOK, fmt.Sprintf("state : %s\nconfirmed cases : %d\nrecovered cases : %d\ntotal deaths : %d\ntotal active cases : %d\n", state.State, state.Confirmed, state.Recovered, state.Deaths, state.Active))
 		}
@@ -61,11 +71,13 @@ func Getstate(c echo.Context) error {
 				"total active cases": strconv.Itoa(state.Active),
 			})
 		}
+		// dataType is not json and string
 		return c.JSON(http.StatusBadRequest, map[string]string{
 			"error": "give the correct datatype",
 		})
 
 	}
+	// if the latitude and longitude does not belongs to India
 	return c.JSON(http.StatusBadRequest, map[string]string{
 		"error": "give the correct latitude and longitude",
 	})
