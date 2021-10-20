@@ -26,7 +26,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/state/{data}": {
+        "/state/{dataType}": {
             "get": {
                 "description": "Take Latitude, Longitude, ApiKey, Database name and Collection name as input. You can specify the data type (json/string)in which you want the response.",
                 "produces": [
@@ -39,7 +39,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "datatype",
+                        "description": "dataType",
                         "name": "dataType",
                         "in": "path",
                         "required": true

@@ -28,4 +28,3 @@
     * Fill the enpty strings by yourself to get the desired output.
 * For Swagger UI
     * **http://localhost:8000/swagger/index.html**
-

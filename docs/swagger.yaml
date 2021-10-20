@@ -28,13 +28,13 @@ info:
   title: Swagger Covid Information About State API
   version: "1.0"
 paths:
-  /state/{data}:
+  /state/{dataType}:
     get:
       description: Take Latitude, Longitude, ApiKey, Database name and Collection
         name as input. You can specify the data type (json/string)in which you want
         the response.
       parameters:
-      - description: datatype
+      - description: dataType
         in: path
         name: dataType
         required: true

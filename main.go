@@ -29,7 +29,7 @@ func main() {
 	// making an instance of echo
 	e := echo.New()
 	// calling the api
-	e.GET("/state/:data", controller.Getstate)
+	e.GET("/state/:dataType", controller.Getstate)
 	// calling the swagger api
 	e.GET("/swagger/*any", echoSwagger.WrapHandler)
 	// starting the port on 8000

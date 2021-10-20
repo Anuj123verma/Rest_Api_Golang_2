@@ -24,5 +24,7 @@ func ConsumeApi(link string, locations entity.Geo) entity.Geo {
 	}
 	// Unmarshalling with json
 	json.Unmarshal(responseData, &locations)
+
+	// return the Geo entity and store the data in that
 	return locations
 }

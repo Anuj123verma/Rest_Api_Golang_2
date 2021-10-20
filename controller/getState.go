@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/Anuj123Verma/Rest_Api_Golang_2/entity"
 	"github.com/Anuj123Verma/Rest_Api_Golang_2/mongodb"
@@ -18,7 +17,7 @@ import (
 // @Summary Give the covid related infomation about the state
 // @Description Take Latitude, Longitude, ApiKey, Database name and Collection name as input. You can specify the data type (json/string)in which you want the response.
 // @Tags States
-// @Param dataType path string true "datatype"
+// @Param dataType path string true "dataType"
 // @Param lat query string true "latitude"
 // @Param long query string true "longitude"
 // @Param db query string true "Database Name"
@@ -29,7 +28,7 @@ import (
 // @Success 200  {object} entity.State
 // @Failure 400  {object} entity.Error
 // @Failure 500  {string} string "error"
-// @Router /state/{data} [get]
+// @Router /state/{dataType} [get]
 func Getstate(c echo.Context) error {
 	// stroing the parameters and querparameters in variables
 	dataType := c.Param("dataType")
@@ -46,6 +45,16 @@ func Getstate(c echo.Context) error {
 	// consuming the api to get the location for a particular latitude and longitude
 	var nlocations entity.Geo = ConsumeApi(link, locations)
 	// checking if the location lies in India
+	if len(nlocations.Items) == 0 {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"state":              "not found",
+			"confirmed cases":    "NA",
+			"recovered cases":    "NA",
+			"total deaths":       "NA",
+			"total active cases": "NA",
+			"apikey":             "may be invalid or expired",
+		})
+	}
 	if nlocations.Items[0].Address.CountryName == "India" {
 		// state struct type variable declared
 		var state entity.State
