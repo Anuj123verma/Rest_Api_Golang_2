@@ -40,7 +40,7 @@ var doc = `{
                     {
                         "type": "string",
                         "description": "datatype",
-                        "name": "data",
+                        "name": "dataType",
                         "in": "path",
                         "required": true
                     },

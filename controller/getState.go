@@ -18,7 +18,7 @@ import (
 // @Summary Give the covid related infomation about the state
 // @Description Take Latitude, Longitude, ApiKey, Database name and Collection name as input. You can specify the data type (json/string)in which you want the response.
 // @Tags States
-// @Param data path string true "datatype"
+// @Param dataType path string true "datatype"
 // @Param lat query string true "latitude"
 // @Param long query string true "longitude"
 // @Param db query string true "Database Name"
@@ -31,12 +31,12 @@ import (
 // @Failure 500  {string} string "error"
 // @Router /state/{data} [get]
 func Getstate(c echo.Context) error {
+	dataType := c.Param("dataType")
 	latitude := c.QueryParam("lat")
 	longitude := c.QueryParam("long")
 	dbname := c.QueryParam("db")
 	collectionname := c.QueryParam("collection")
 	key := c.QueryParam("ApiKey")
-	dataType := c.Param("data")
 
 	link := Getlink(latitude, longitude, key)
 	var locations entity.Geo

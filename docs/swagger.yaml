@@ -36,7 +36,7 @@ paths:
       parameters:
       - description: datatype
         in: path
-        name: data
+        name: dataType
         required: true
         type: string
       - description: latitude
