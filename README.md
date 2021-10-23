@@ -22,6 +22,7 @@
     * ApiKey -- Key Generated from the [here](https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-geocode-brief.html) platform
 * Port
     * 8000 -- you can change it is **main.go**
+* Run **"go run main.go"** to up the server
 * Type this on your browser to get the output
     * **http://localhost:8000/state/string?lat=""&long=""&db=""&collection=""&ApiKey=""** or 
     * **http://localhost:8000/state/json?lat=""&long=""&db=""&collection=""&ApiKey=""**
